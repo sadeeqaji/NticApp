@@ -4,8 +4,10 @@ import { Ionicons, Feather } from '@expo/vector-icons';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo'
 import call from 'react-native-phone-call'
+import { withNavigation } from 'react-navigation';
 
 import Data from './Data';
+import Profile from './profile';
 
 const args = {
   number: '07067307317', // String value with the number to call
@@ -19,20 +21,36 @@ class Body extends React.Component{
     };
   
 render() {
- 
+  
       return (
     <View>
         <Data />
           <ScrollView >
-          
+      
             <View style={styles.ImageContainer} >
             
-              <Image source={{uri: this.props.image, cache: 'only-if-cached',}} style={{width:200, height:200, borderRadius: 200/2, margin: 10}}   />
+             
                 <View style={styles.Name_Icon}>
-                  <TouchableOpacity onPress={()=> this.props.navigation.navigate("Profile")} >
-                    <Text style={styles.NameStyle}>{this.props.name}</Text>
+                  <TouchableOpacity onPress={()=> this.props.navigation.navigate("Profile", {name: this.props.name,
+                  image: this.props.image,
+                  nickname: this.props.nickname,
+                  address: this.props.address,
+                  institution: this.props.institution,
+                  birthday: this.props.birthday,
+                  facebookID: this.props.facebookID,
+                  twitter: this.props.twitter,
+                  instagram: this.props.instagram,
+                  snapchat: this.props.snapchat,
+                  whatsapp: this.props.whatsapp,
+                  email: this.props.email,
+                  phoneNumber: this.props.phoneNumber,
+                  
+                  })} >
+                   <Image source={{uri: this.props.image, cache: 'only-if-cached',}} style={{width:150, height:150, borderRadius: 200/2, margin: 10}}   />
+                    
                     <Text style={styles.NicknameStyle} >{this.props.nickname}</Text>
                 </TouchableOpacity>
+                <Text style={styles.NameStyle}>{this.props.name}</Text>
 
                 <TouchableOpacity onPress={() => {call(args).catch(console.error)}} >
                   <View style={styles.CallIconStyle}>
@@ -55,7 +73,7 @@ render() {
 const styles = StyleSheet.create({
   
    ImageContainer:{
-        flexDirection: 'row',
+        flexDirection: 'column',
         height: 300,
         margin: 10,
         backgroundColor: "#fff",
@@ -108,4 +126,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Body;
+export default withNavigation(Body);

@@ -7,9 +7,6 @@ import EvilIcons from '../../node_modules/@expo/vector-icons/EvilIcons';
 
 class Profile extends React.Component {
     state={
-        
-        name: 'Sadiq Mustapha Aji',
-        nickname: 'Sadiq Aji',
         ModalVisible: false,
       };
       setModalVisible(visible){
@@ -20,8 +17,29 @@ class Profile extends React.Component {
       }
       
   render() {
+    const {navigation} = this.props;
+    const name = navigation.getParam("name");
+    const image = navigation.getParam("image");
+    const nickname = navigation.getParam("nickname");
+    const Address = navigation.getParam("address");
+    const institution = navigation.getParam("institution");
+    const birthday = navigation.getParam("birthday");
+    const facebookID = navigation.getParam("facebookID");
+    const twitter = navigation.getParam("twitter");
+    const instagram = navigation.getParam("instagram");
+    const whatsapp = navigation.getParam("whatsapp");
+    const snapchat = navigation.getParam("snapchat");
+    const email = navigation.getParam("email")
+    let phoneNumber = navigation.getParam("phoneNumber");
     
+
+    if(phoneNumber === null || phoneNumber === ""){
+      phoneNumber = whatsapp;
+    }else{
+      phoneNumber = phoneNumber;
+    }
     return (
+      
       
       <View style={styles.ProfileContainer}> 
       <Modal 
@@ -38,27 +56,27 @@ class Profile extends React.Component {
             <View style={styles.ModalSocialMedia}>
             
             <View style={styles.test}>
-              <Text style={styles.modalText}> Sadiq Aji</Text>
-              <Text style={styles.modalText}> 23/Febuary </Text>                
+              <Text style={styles.modalText}> {nickname} </Text>
+              <Text style={styles.modalText}> {birthday} </Text>                
                 <View style={styles.socialMedia}>
                   <Entypo name="facebook-with-circle" size={50} color="#3b5998" />
-                    <Text style={styles.ModalSocialMediaText}>Sadiq Aji Mustapha </Text>
+                    <Text style={styles.ModalSocialMediaText}>{facebookID}</Text>
                 </View>
                 <View style={styles.socialMedia}>
                   <Entypo name="twitter-with-circle" size={50} color="#00aced" />
-                    <Text style={styles.ModalSocialMediaText}>@Sadeeq_Aji </Text>
+                    <Text style={styles.ModalSocialMediaText}>@{twitter} </Text>
                 </View>
                 <View style={styles.socialMedia}> 
                   <Feather name="instagram" size={50} color="#fb3958" />
-                    <Text style={styles.ModalSocialMediaText}>Sadeeq_Aji </Text>
+                    <Text style={styles.ModalSocialMediaText}>{instagram} </Text>
                 </View>
                 <View style={styles.socialMedia}>
                   <Ionicons name="logo-whatsapp" size={50} color="#34AF23" />
-                    <Text style={styles.ModalSocialMediaText}>+2347067307317 </Text>
+                    <Text style={styles.ModalSocialMediaText}>{whatsapp}</Text>
                 </View>
                 <View style={styles.socialMedia}>
                   <FontAwesome name="snapchat" size={50} color="#fefc00" />
-                    <Text style={styles.ModalSocialMediaText}>Sadeeq_Aji </Text>
+                    <Text style={styles.ModalSocialMediaText}>{snapchat} </Text>
                 </View>
                 </View>
               </View>
@@ -67,40 +85,40 @@ class Profile extends React.Component {
         <View style={styles.Profile}>
           <TouchableOpacity>
             <View style={styles.BtnBack}>     
-             <Ionicons name="ios-arrow-back" size={50} color="#511D1D" onPress={() => this.props.navigation.goBack()} />
+             <Ionicons name="ios-arrow-back" size={30} color="#511D1D" onPress={() => this.props.navigation.goBack()} />
             </View>
           </TouchableOpacity>
 
             <View>
-              <Image source={require('../asset/sadiq.jpg')} resizeMode="center" style={styles.ProfileImage} />
+              <Image source={{uri: image}} style={{width:'100%', height: 300, marginTop: 5, }} resizeMode="stretch" />
                 <View style={styles.Name}>
-                  <Text style={styles.NicknameStyle} >{this.props.nickname}</Text>
-                  <Text style={styles.NameStyle}>{this.state.name}</Text>
+                  <Text style={styles.NicknameStyle} >{nickname}</Text>
+                  <Text style={styles.NameStyle}>{name}</Text>
                </View>
             </View>
         </View>
 
           <View style={styles.MoreInfo}>
               <View style={styles.Icon_Text}>
-                <Feather name="phone-call" size={50} color="#511D1D" />
-                  <Text style={styles.TextMoreInfo}>07067307317 </Text>
+                <Feather name="phone-call" size={30} color="#511D1D" />
+                  <Text style={styles.TextMoreInfo}>{phoneNumber} </Text>
                   <TouchableOpacity  onPress={() => {this.setState({ModalVisible: true})}}>
-                    <FontAwesome name="user-circle" size={50} color="#511D1D" style={styles.MoreInfoBtn}/>
+                    <FontAwesome name="user-circle" size={30} color="#511D1D" style={styles.MoreInfoBtn}/>
                   </TouchableOpacity>
               </View>  
 
             <View style={styles.Icon_Text}>
-                <FontAwesome name="institution" size={50} color="#511D1D" />
-                <Text style={styles.TextMoreInfo}>Abubakar Tafawa Balewa University </Text>
+                <FontAwesome name="institution" size={30} color="#511D1D" />
+                <Text style={styles.TextMoreInfo}>{institution}</Text>
             </View>
 
             <View style={styles.Icon_Text}>
-                <Entypo name="email" size={50} color="#511D1D" />
-                <Text style={styles.TextMoreInfo}>sadiqajimustapha@gmail.com </Text>
+                <Entypo name="email" size={30} color="#511D1D" />
+                <Text style={styles.TextMoreInfo}>{email}</Text>
             </View>
             
             <View style={styles.Icon_Text}>
-                <Text style={styles.TextMoreInfo}>ADREESS : Hausari Ward Yanrake Street, Nguru Local government, Yobe State Nigeria.  </Text>
+                <Text style={styles.TextMoreInfo}>ADREESS : {Address} </Text>
             </View>
 
             </View>
@@ -131,7 +149,7 @@ const styles = StyleSheet.create({
         color: '#511D1D',
         margin: 2,
         fontWeight: 'bold',
-        fontSize: 20            
+        fontSize: 15            
     },
     NicknameStyle:{
          textAlign: 'center',
@@ -144,7 +162,8 @@ const styles = StyleSheet.create({
     Icon_Text:{
         flex: 1,
         flexDirection: 'row',
-        marginLeft: 20,   
+        marginLeft: 20, 
+        marginTop: 5  
     },
     TextMoreInfo:{
         flex: 1,

@@ -30,7 +30,7 @@ header: null,
       <ApolloProvider client={client} >
       <StatusBar hidden={true} />
         <View style={styles.container} >
-        <Header />        
+               
         <AppStackNavigator navigation={this.props.navigation}/>
         </View>
        </ApolloProvider> 

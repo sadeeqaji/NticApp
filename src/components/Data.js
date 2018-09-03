@@ -26,6 +26,15 @@ query {
     name
     nickname
     phoneNumber
+    address
+    futureInstitution
+    email
+    birthday
+    facebookID
+    twitter
+    instagramID
+    snapchatID
+    whatsapp
     
   }
 }`
@@ -66,13 +75,21 @@ class Data extends React.Component {
       <ListView 
         enableEmptySections={true}
         dataSource={this.state.dataSource}
-        renderRow={(Profile) => (
-          <Body name={Profile.name} 
-                image={Profile.imgUrl}
-                nickname={Profile.nickname}
-                phoneNumber={Profile.phoneNumber}
-                Institution={Profile.futureInstitution}
-                email={Profile.email}
+        renderRow={(Person) => (
+          <Body name={Person.name} 
+                image={Person.imgUrl}
+                nickname={Person.nickname}
+                phoneNumber={Person.phoneNumber}
+                institution={Person.futureInstitution}
+                email={Person.email}
+                address={Person.address}
+                birthday={Person.birthday}
+                facebookID={Person.facebookID}
+                twitter={Person.twitter}
+                instagram={Person.instagramID}
+                whatsapp={Person.whatsapp}
+                snapchat={Person.snapchatID}
+                
                 
       />
           

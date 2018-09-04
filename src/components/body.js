@@ -27,7 +27,7 @@ render() {
         <Data />
           <ScrollView >
       
-            <View style={styles.ImageContainer} >
+            <View style={styles.ImageContainer} test = {console.log(this.props.name)} >
             
              
                 <View style={styles.Name_Icon}>

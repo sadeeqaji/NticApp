@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Modal } from 'react-native';
 import { Ionicons, Feather, FontAwesome, MaterialIcons, Entypo} from '@expo/vector-icons';
 import EvilIcons from '../../node_modules/@expo/vector-icons/EvilIcons';
-
+import Hr from 'react-native-hr-component';
 
 
 class Profile extends React.Component {
@@ -90,9 +90,15 @@ class Profile extends React.Component {
           </TouchableOpacity>
 
             <View>
-              <Image source={{uri: image}} style={{width:'100%', height: 300, marginTop: 5, }} resizeMode="stretch" />
+              <Image source={{uri: image}} style={{width:'100%', height: 300, padding: 10}}  />
                 <View style={styles.Name}>
-                  <Text style={styles.NicknameStyle} >{nickname}</Text>
+                  <Hr text={nickname} linecolor="#511D1D" textStyle={{
+                    textAlign: 'center',
+                    color: '#511D1D', 
+                    margin: 5,
+                    fontSize: 18,
+                  }}  
+                  />
                   <Text style={styles.NameStyle}>{name}</Text>
                </View>
             </View>
@@ -152,9 +158,7 @@ const styles = StyleSheet.create({
         fontSize: 15            
     },
     NicknameStyle:{
-         textAlign: 'center',
-         color: '#511D1D',
-         margin: 2,
+         
     },
     MoreInfo:{
         flex: 1,
